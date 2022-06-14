@@ -101,11 +101,11 @@ func (c *Consistent) generateKey(node string, index int) string {
 }
 
 // Get 获取离给定对象最近的节点hash
-func (c *Consistent) Get(key string) (string, bool) {
+func (c *Consistent) Get(key string) string {
 	c.RLock()
 	defer c.RUnlock()
 	if c.IsEmpty() {
-		return "", false
+		return ""
 	}
 
 	hash := c.hash(key)
@@ -118,7 +118,7 @@ func (c *Consistent) Get(key string) (string, bool) {
 		idx = 0
 	}
 
-	return c.hashMap[c.sortKeys[idx]], true
+	return c.hashMap[c.sortKeys[idx]]
 }
 
 // Remove 删除一个节点
