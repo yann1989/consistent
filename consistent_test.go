@@ -21,20 +21,7 @@ func TestConsistent_Add(t *testing.T) {
 
 	users := []string{"xxx1", "TpJ-0-1jl/ab2b642468b18b7d.hblock", "TpJ-0-1jl/aa299567d32e93de.hblock", "TpJ-0-1jl/ac29956xx32e93de.hblock", "TpJ-0-1jl/ad299567d32xx3de.hblock", "TpJ-0-1jl/ae299567d32e93de.hblock"}
 	for _, key := range users {
-		get, ok := consistent.Get(key)
-		if !ok {
-			t.Fatal("未找到节点")
-		}
-		t.Logf("节点: %v   key: %v", get, key)
-	}
-
-	consistent.remove("192.168.10.16")
-	t.Log("------------------------华丽的分割线-------------------------")
-	for _, key := range users {
-		get, ok := consistent.Get(key)
-		if !ok {
-			t.Fatal("未找到节点")
-		}
+		get := consistent.Get(key)
 		t.Logf("节点: %v   key: %v", get, key)
 	}
 
